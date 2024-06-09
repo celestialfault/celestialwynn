@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "celestialwynn",
+  "version": "${version}",
+  "name": "Celestial Wynn",
+  "description": "Celeste's set of minor tweaks and fixes for Wynncraft",
+  "authors": ["celeste"],
+  "license": "zlib",
+  "environment": "client",
+  "contact": {
+    "sources": "https://github.com/celestialfault/celestialwynn",
+    "issues": "https://github.com/celestialfault/celestialwynn/issues"
+  },
+  "entrypoints": {
+    "client": ["me.celestialfault.celestialwynn.CelestialWynn"],
+    "modmenu": ["me.celestialfault.celestialwynn.config.ModMenuImpl"]
+  },
+  "mixins": ["celestialwynn.mixins.json"],
+  "accessWidener": "celestialwynn.accesswidener",
+  "depends": {
+    "java": ">=17",
+    "fabricloader": ">=0.15",
+    "fabric-api": "*",
+    "fabric-language-kotlin": "*",
+    "minecraft": "1.20.2"
+  }
+}
