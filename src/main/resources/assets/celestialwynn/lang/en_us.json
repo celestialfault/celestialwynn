@@ -3,13 +3,17 @@
   "celestialwynn.prefix": "Celestial",
 
   "celestialwynn.config.main": "General",
-  "celestialwynn.config.item_scale": "Item Scaling",
+  "celestialwynn.config.main.description": "General uncategorized settings",
+  "celestialwynn.config.item_scale": "First-Person Item Scale",
+  "celestialwynn.config.item_scale.description": "Control the size of held items while in first person",
 
   "celestialwynn.cape_fix": "Fix Silverbull Capes",
   "celestialwynn.cape_fix.description": "Fixes capes floating when players have their armor hidden with a Silverbull subscription",
   "celestialwynn.hide_territory_bar": "Hide Territory Bar",
   "celestialwynn.hide_territory_bar.description.line1": "Hides the persistent territory/guild bar at the top of the screen when enabled",
   "celestialwynn.hide_territory_bar.description.line2": "Note that this will also hide the bomb timer if you aren't using the bomb timer overlay from Wynntils or fuy.gg!",
+  "celestialwynn.hide_shouts": "Hide Shouts",
+  "celestialwynn.hide_shouts.description": "Hides shouts from chat. This is designed to be used with the Wynntils chat tabs feature turned off!",
   "celestialwynn.fov_scaling": "FOV Scaling Function",
   "celestialwynn.fov_scaling.description.line1": "Alternative FOV scaling functions which reduce how much your FOV is modified by effects such as Speed and sprinting.",
   "celestialwynn.fov_scaling.description.line2": "This feature is ported directly from Wynntils 1.12.2 (except for the None option, which can be replicated by setting FOV Effects to 0%% in Accessibility Settings).",
@@ -18,9 +22,13 @@
   "celestialwynn.scaling.sprint_only": "Sprinting only",
 
   "celestialwynn.item.x": "X",
+  "celestialwynn.item.x.description": "Moves the held item left or right across the screen",
   "celestialwynn.item.y": "Y",
+  "celestialwynn.item.y.description": "Moves the held item up or down across the screen",
   "celestialwynn.item.z": "Z",
+  "celestialwynn.item.z.description": "Moves the held item towards or away from the camera",
   "celestialwynn.item.scale": "Scale",
+  "celestialwynn.item.scale.description": "Modifies how large in scale held items should appear",
 
   "celestialwynn.command.fov_scaling.unknown": "%s is not a recognized FOV scaling function",
   "celestialwynn.command.fov_scaling.set": "Set FOV scaling function to %s",

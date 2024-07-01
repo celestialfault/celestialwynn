@@ -1,9 +1,9 @@
-package me.celestialfault.celestialwynn.mixin;
+package dev.celestialfault.celestialwynn.mixin.misc;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
-import me.celestialfault.celestialwynn.CelestialWynn;
-import me.celestialfault.celestialwynn.config.Config;
+import dev.celestialfault.celestialwynn.CelestialWynn;
+import dev.celestialfault.celestialwynn.config.Config;
 import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(PlayerEntityModel.class)
-abstract class PlayerEntityModelMixin {
+abstract class FixFloatingSilverbullCapes {
 	@ModifyExpressionValue(
 		method = "setAngles(Lnet/minecraft/entity/LivingEntity;FFFFF)V",
 		at = @At(
@@ -21,8 +21,8 @@ abstract class PlayerEntityModelMixin {
 			target = "Lnet/minecraft/item/ItemStack;isEmpty()Z"
 		)
 	)
-	public boolean removeHiddenArmorCapeAngle(boolean original, @Local(argsOnly = true) LivingEntity entity) {
-		if(!CelestialWynn.isOnWynn || !Config.INSTANCE.fixSilverbullCapes.get()) {
+	public boolean celestialwynn$fixSilverbullCapes(boolean original, @Local(argsOnly = true) LivingEntity entity) {
+		if(!CelestialWynn.isOnWynn() || !Config.getFixSilverbullCapes()) {
 			return original;
 		}
 

@@ -1,14 +1,16 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "me.celestialfault.celestialwynn.mixin",
+  "package": "dev.celestialfault.celestialwynn.mixin",
   "compatibilityLevel": "JAVA_17",
   "client": [
-    "AbstractClientPlayerEntityMixin",
-    "BossBarHudMixin",
-    "ClientPlayNetworkHandlerMixin",
-    "HeldItemRendererMixin",
-    "PlayerEntityModelMixin"
+    "misc.FixChatClosingOtherMenus",
+    "misc.FixFloatingSilverbullCapes",
+    "misc.HideShouts",
+    "render.HeldItemScale",
+    "render.ModifyFovMultiplier",
+    "territorybar.DetectTerritoryBarPackets",
+    "territorybar.SkipTerritoryBarRender"
   ],
   "injectors": {
     "defaultRequire": 1

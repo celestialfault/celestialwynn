@@ -1,6 +1,6 @@
 plugins {
     id "fabric-loom" version "1.5-SNAPSHOT"
-	id "io.freefair.lombok" version "8.6"
+	id "org.jetbrains.kotlin.jvm" version "2.0.0"
 }
 
 version = project.mod_version
@@ -25,9 +25,7 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	include(implementation("me.celestialfault:celestial-config:${project.celestialconfig_version}"))
-	modRuntimeOnly("net.fabricmc:fabric-language-kotlin:1.11.0+kotlin.2.0.0") {
-		because("transitive dependency from celestial-config")
-	}
+	modImplementation "net.fabricmc:fabric-language-kotlin:1.11.0+kotlin.2.0.0"
 
 	modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
 	modImplementation("dev.isxander.yacl:yet-another-config-lib-fabric:${project.yacl_version}") {
