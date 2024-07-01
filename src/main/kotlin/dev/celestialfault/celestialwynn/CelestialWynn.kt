@@ -1,6 +1,5 @@
 package dev.celestialfault.celestialwynn
 
-import com.mojang.brigadier.CommandDispatcher
 import com.mojang.logging.LogUtils
 import dev.celestialfault.celestialwynn.config.Config
 import net.fabricmc.api.ClientModInitializer

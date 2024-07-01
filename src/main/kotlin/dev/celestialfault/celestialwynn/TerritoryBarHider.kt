@@ -1,6 +1,9 @@
 package dev.celestialfault.celestialwynn
 
-import net.minecraft.text.LiteralTextContent
+/*? if >1.20.2*/
+import net.minecraft.text.PlainTextContent
+/*? else*/
+/*import net.minecraft.text.LiteralTextContent*/
 import java.util.*
 import java.util.regex.Pattern
 
@@ -15,7 +18,7 @@ object TerritoryBarHider {
 		private set
 
 	@JvmStatic
-	fun maybeHideBossBar(uuid: UUID, text: LiteralTextContent) {
+	fun maybeHideBossBar(uuid: UUID, text: /*? if >1.20.2 */PlainTextContent/*? else *//*LiteralTextContent*/) {
 		// we already know this bossbar is the territory one, so don't bother re-checking if it is
 		if(uuid == territoryBossbarUuid) return
 

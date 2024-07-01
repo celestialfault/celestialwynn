@@ -19,7 +19,6 @@ abstract class HideShouts {
 
 	@Inject(method = "addMessage(Lnet/minecraft/text/Text;)V", at = @At("HEAD"), cancellable = true)
 	public void celestialwynn$hideShouts(Text message, CallbackInfo ci) {
-		//noinspection DataFlowIssue
 		if(CelestialWynn.isOnWynn() && Config.getHideShouts() && SHOUT_PATTERN.matcher(Formatting.strip(message.asTruncatedString(96))).find()) {
 			ci.cancel();
 		}

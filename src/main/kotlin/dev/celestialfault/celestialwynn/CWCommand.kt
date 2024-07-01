@@ -9,7 +9,6 @@ import com.mojang.brigadier.tree.CommandNode
 import dev.celestialfault.celestialwynn.config.Config
 import dev.celestialfault.celestialwynn.config.ConfigGUI.getConfigScreen
 import dev.celestialfault.celestialwynn.config.FOVScaling
-import kotlinx.coroutines.yield
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource
 import net.minecraft.client.MinecraftClient
