@@ -6,7 +6,7 @@ import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.network.packet.s2c.play.BossBarS2CPacket;
 /*? if >1.20.2*/
 import net.minecraft.text.PlainTextContent;
-/*? else*/
+/*? if <1.21*/
 /*import net.minecraft.text.LiteralTextContent;*/
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -20,10 +20,10 @@ abstract class DetectTerritoryBarPackets {
 		if(!CelestialWynn.isOnWynn()) return;
 
 		if(packet.action instanceof BossBarS2CPacket.AddAction addAction
-			&& addAction.name.getContent() instanceof /*? if >1.20.2 */PlainTextContent /*? else *//*LiteralTextContent*/ literalText) {
+			&& addAction.name.getContent() instanceof /*? if >1.20.2 */PlainTextContent /*? if <1.21*//*LiteralTextContent*/ literalText) {
 			TerritoryBarHider.maybeHideBossBar(packet.uuid, literalText);
 		} else if(packet.action instanceof BossBarS2CPacket.UpdateNameAction updateNameAction
-			&& updateNameAction.name.getContent() instanceof /*? if >1.20.2 */PlainTextContent /*? else *//*LiteralTextContent*/ literalText) {
+			&& updateNameAction.name.getContent() instanceof /*? if >1.20.2 */PlainTextContent /*? if <1.21*//*LiteralTextContent*/ literalText) {
 			TerritoryBarHider.maybeHideBossBar(packet.uuid, literalText);
 		}
 	}
