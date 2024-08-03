@@ -14,6 +14,8 @@
   "celestialwynn.hide_territory_bar.description.line2": "Note that this will also hide the bomb timer if you aren't using the bomb timer overlay from Wynntils or fuy.gg!",
   "celestialwynn.hide_shouts": "Hide Shouts",
   "celestialwynn.hide_shouts.description": "Hides shouts from chat. This is designed to be used with the Wynntils chat tabs feature turned off!",
+  "celestialwynn.mute_spells": "Mute Spell Ding",
+  "celestialwynn.mute_spells.description": "Mutes the ding sound played when a spell is successfully cast",
   "celestialwynn.fov_scaling": "FOV Scaling Function",
   "celestialwynn.fov_scaling.description.line1": "Alternative FOV scaling functions which reduce how much your FOV is modified by effects such as Speed and sprinting.",
   "celestialwynn.fov_scaling.description.line2": "This feature is ported directly from Wynntils 1.12.2 (except for the None option, which can be replicated by setting FOV Effects to 0%% in Accessibility Settings).",

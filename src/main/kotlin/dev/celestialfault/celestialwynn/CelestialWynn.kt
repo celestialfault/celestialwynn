@@ -29,7 +29,7 @@ object CelestialWynn : ClientModInitializer {
 	override fun onInitializeClient() {
 		try {
 			Config.load()
-		} catch (e: IOException) {
+		} catch(e: IOException) {
 			LOGGER.warn("Failed to load config file", e)
 		}
 		ClientPlayConnectionEvents.JOIN.register(this::onJoin)
@@ -40,7 +40,7 @@ object CelestialWynn : ClientModInitializer {
 	@Suppress("UNUSED_PARAMETER")
 	private fun onJoin(handler: ClientPlayNetworkHandler, ignored: PacketSender, client: MinecraftClient) {
 		val info = handler.serverInfo
-		if (info != null && info.address.endsWith(".wynncraft.com")) {
+		if(info != null && info.address.endsWith(".wynncraft.com")) {
 			LOGGER.info("Detected joining Wynncraft")
 			isOnWynn = true
 		}

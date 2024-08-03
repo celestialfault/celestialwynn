@@ -70,14 +70,14 @@ object CWCommand {
 
 	private fun scalingFunction(ctx: CommandContext<FabricClientCommandSource>): Int {
 		val function = StringArgumentType.getString(ctx, "function").lowercase(Locale.getDefault())
-		if (!FUNCTIONS.containsKey(function)) {
+		if(!FUNCTIONS.containsKey(function)) {
 			ctx.source.sendError(Text.translatable("celestialwynn.command.fov_scaling.unknown", function))
 			return 0
 		}
 		Config.fovScaling = FUNCTIONS[function]!!
 		try {
 			Config.save()
-		} catch (e: IOException) {
+		} catch(e: IOException) {
 			throw UncheckedIOException(e)
 		}
 		ctx.source.sendFeedback(

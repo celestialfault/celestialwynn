@@ -26,13 +26,6 @@ abstract class SkipTerritoryBarRender {
 			return iterator;
 		}
 
-		// This could maybe be optimized to not copy into a new ArrayList, but in all honesty this performs well enough for now.
-		ArrayList<B> filtered = new ArrayList<>();
-		iterator.forEachRemaining(bar -> {
-			if(!Objects.equals(target, bar.getUuid())) {
-				filtered.add(bar);
-			}
-		});
-		return filtered.iterator();
+		return TerritoryBarHider.filterBars(original.call(instance));
 	}
 }

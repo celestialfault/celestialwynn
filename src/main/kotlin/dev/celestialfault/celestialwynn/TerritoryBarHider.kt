@@ -1,11 +1,16 @@
 package dev.celestialfault.celestialwynn
 
+import net.minecraft.client.gui.hud.ClientBossBar
+import java.util.*
+import java.util.regex.Pattern
+
 /*? if >1.20.2*/
 import net.minecraft.text.PlainTextContent
 /*? if <1.21*/
-/*import net.minecraft.text.LiteralTextContent*/
-import java.util.*
-import java.util.regex.Pattern
+/*
+import net.minecraft.text.LiteralTextContent
+typealias PlainTextContent = LiteralTextContent
+*/
 
 object TerritoryBarHider {
 	private val TERRITORY_REGEX = Pattern.compile("§c[^§]+§4 \\[\\w{3,5}]")
@@ -18,7 +23,7 @@ object TerritoryBarHider {
 		private set
 
 	@JvmStatic
-	fun maybeHideBossBar(uuid: UUID, text: /*? if >1.20.2*/PlainTextContent/*? if <1.21*//*LiteralTextContent*/) {
+	fun maybeHideBossBar(uuid: UUID, text: PlainTextContent) {
 		// we already know this bossbar is the territory one, so don't bother re-checking if it is
 		if(uuid == territoryBossbarUuid) return
 
@@ -28,6 +33,13 @@ object TerritoryBarHider {
 			// simply canceling any packets relating to the boss bar to not break other mods that might still
 			// depend on the boss bar existing.
 			territoryBossbarUuid = uuid
+		}
+	}
+
+	@JvmStatic
+	fun <B : ClientBossBar> filterBars(bars: Iterator<B>) = iterator {
+		for(bar in bars) {
+			if(bar.uuid != territoryBossbarUuid) yield(bar)
 		}
 	}
 }

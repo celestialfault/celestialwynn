@@ -19,6 +19,8 @@ object Config : AbstractConfig(FabricLoader.getInstance().configDir.resolve("cel
 	@get:JvmStatic
 	var hideShouts by Property.boolean("hide_shouts", false).notNullable()
 	@get:JvmStatic
+	var muteSpellCastDing by Property.boolean("mute_spells", false).notNullable()
+	@get:JvmStatic
 	var fovScaling by Property.enum<FOVScaling>("fov_scaling", FOVScaling.VANILLA).notNullable()
 
 	object ItemScaling : ObjectProperty<ItemScaling>("item_scaling") {
