@@ -1,8 +1,6 @@
 # Celestial Wynn
 
-My small collection of tweaks for [Wynncraft], primarily aimed at fixing small bugs or introducing minor quality of life
-features that aren't present in other mods.
-
-(Yes, some of these *probably* could've just been PRed to Wynntils, but... eh.)
+A mod containing a collection of small patches for [Wynncraft], primarily aimed at fixing minor client-sided
+bugs or improving the game experience in minor ways, without making any drastic changes to the look and feel of the game.
 
 [Wynncraft]: https://wynncraft.com/
