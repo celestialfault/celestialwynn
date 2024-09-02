@@ -1,6 +1,8 @@
 package dev.celestialfault.celestialwynn
 
 import com.mojang.logging.LogUtils
+import dev.celestialfault.celestialwynn.commands.CWCommand
+import dev.celestialfault.celestialwynn.commands.ChatCommand
 import dev.celestialfault.celestialwynn.config.Config
 import net.fabricmc.api.ClientModInitializer
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback
@@ -35,12 +37,12 @@ object CelestialWynn : ClientModInitializer {
 		ClientPlayConnectionEvents.JOIN.register(this::onJoin)
 		ClientPlayConnectionEvents.DISCONNECT.register(this::onDisconnect)
 		ClientCommandRegistrationCallback.EVENT.register(CWCommand::register)
+		ClientCommandRegistrationCallback.EVENT.register(ChatCommand::register)
 	}
 
 	@Suppress("UNUSED_PARAMETER")
 	private fun onJoin(handler: ClientPlayNetworkHandler, ignored: PacketSender, client: MinecraftClient) {
-		val info = handler.serverInfo
-		if(info != null && info.address.endsWith(".wynncraft.com")) {
+		if(client.networkHandler?.brand == "Wynn") {
 			LOGGER.info("Detected joining Wynncraft")
 			isOnWynn = true
 		}

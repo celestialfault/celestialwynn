@@ -7,7 +7,6 @@ import dev.celestialfault.celestialwynn.config.Config;
 import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -26,7 +25,7 @@ abstract class FixFloatingSilverbullCapes {
 			return original;
 		}
 
-		ItemStack chestplate = entity.getEquippedStack(EquipmentSlot.CHEST);
+		var chestplate = entity.getEquippedStack(EquipmentSlot.CHEST);
 		return (!chestplate.isEmpty() && chestplate.getItem().equals(Items.STONE_SHOVEL) && chestplate.getDamage() == 36) || original;
 	}
 }

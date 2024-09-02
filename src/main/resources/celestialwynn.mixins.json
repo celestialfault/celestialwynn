@@ -4,14 +4,14 @@
   "package": "dev.celestialfault.celestialwynn.mixin",
   "compatibilityLevel": "JAVA_17",
   "client": [
+    "misc.ChatChannelMixin",
     "misc.FixChatClosingOtherMenus",
     "misc.FixFloatingSilverbullCapes",
     "misc.HideShouts",
     "misc.MuteSpellCastDing",
     "render.HeldItemScale",
     "render.ModifyFovMultiplier",
-    "territorybar.DetectTerritoryBarPackets",
-    "territorybar.SkipTerritoryBarRender"
+    "render.SkipTerritoryBarRender"
   ],
   "injectors": {
     "defaultRequire": 1

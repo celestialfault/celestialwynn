@@ -1,14 +1,21 @@
 package dev.celestialfault.celestialwynn.config
 
+import dev.celestialfault.celestialwynn.enums.FOVScaling
 import dev.celestialfault.celestialwynn.config.Config.binding
+import dev.celestialfault.celestialwynn.enums.ChannelMode
 import dev.isxander.yacl3.api.*
 import dev.isxander.yacl3.api.controller.EnumControllerBuilder
 import dev.isxander.yacl3.api.controller.FloatSliderControllerBuilder
 import dev.isxander.yacl3.api.controller.IntegerSliderControllerBuilder
 import dev.isxander.yacl3.api.controller.TickBoxControllerBuilder
+import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.client.gui.screen.Screen
 import net.minecraft.text.Text
 import net.minecraft.util.Formatting
+import kotlin.math.round
+import kotlin.reflect.KClass
+
+private val waveyCapesInstalled = FabricLoader.getInstance().isModLoaded("waveycapes")
 
 object ConfigGUI {
 	@JvmStatic
@@ -18,30 +25,63 @@ object ConfigGUI {
 			.category(
 				ConfigCategory.createBuilder()
 					.name(Text.translatable("celestialwynn.config.main"))
-					.group(genericGroup())
+					.group(bugFixes())
+					.group(chat())
 					.group(itemScaling())
+					.group(misc())
 					.build()
 			)
 			.save(Config::save)
 			.build().generateScreen(parent)
 	}
 
-	private fun genericGroup(): OptionGroup {
+	private fun bugFixes(): OptionGroup {
 		return OptionGroup.createBuilder()
-			.name(Text.translatable("celestialwynn.config.main"))
-			.description(OptionDescription.of(Text.translatable("celestialwynn.config.main.description")))
+			.name(Text.translatable("celestialwynn.config.bug_fixes"))
+			.description(OptionDescription.of(Text.translatable("celestialwynn.config.bug_fixes.description")))
 			.option(Option.createBuilder<Boolean>()
 				.name(Text.translatable("celestialwynn.cape_fix"))
-				.description(OptionDescription.of(Text.translatable("celestialwynn.cape_fix.description")))
+				.description(OptionDescription.of(Text.translatable("celestialwynn.cape_fix.description")
+					.also {
+						if(waveyCapesInstalled) {
+							it.append("\n\n")
+								.append(Text.translatable("celestialwynn.cape_fix.wavey_capes_installed"))
+						}
+					}))
 				.controller(TickBoxControllerBuilder::create)
+				.available(!waveyCapesInstalled)
 				.binding(Config::fixSilverbullCapes.binding())
 				.build())
+			.build()
+	}
+
+	private fun chat(): OptionGroup {
+		return OptionGroup.createBuilder()
+			.name(Text.translatable("celestialwynn.config.chat"))
+			.description(OptionDescription.of(Text.translatable("celestialwynn.config.chat.description")))
 			.option(Option.createBuilder<Boolean>()
 				.name(Text.translatable("celestialwynn.hide_shouts"))
 				.description(OptionDescription.of(Text.translatable("celestialwynn.hide_shouts.description")))
 				.controller(TickBoxControllerBuilder::create)
 				.binding(Config::hideShouts.binding())
 				.build())
+			.option(Option.createBuilder<ChannelMode>()
+				.name(Text.translatable("celestialwynn.channel_mode"))
+				.description(OptionDescription.of(Text.translatable("celestialwynn.channel_mode.description")))
+				.controller {
+					EnumControllerBuilder.create(it)
+						.enumClass(ChannelMode::class.java)
+						.formatValue { Text.translatable("celestialwynn.channel_mode." + it.name.lowercase()) }
+				}
+				.binding(Config::channelMode.binding())
+				.build())
+			.build()
+	}
+
+	private fun misc(): OptionGroup {
+		return OptionGroup.createBuilder()
+			.name(Text.translatable("celestialwynn.config.misc"))
+			.description(OptionDescription.of(Text.translatable("celestialwynn.config.misc.description")))
 			.option(Option.createBuilder<Boolean>()
 				.name(Text.translatable("celestialwynn.hide_territory_bar"))
 				.description(OptionDescription.of(Text.translatable("celestialwynn.hide_territory_bar.description.line1")
@@ -51,19 +91,24 @@ object ConfigGUI {
 				.controller(TickBoxControllerBuilder::create)
 				.binding(Config::hideTerritoryBar.binding())
 				.build())
-			.option(Option.createBuilder<Boolean>()
+			.option(Option.createBuilder<Float>()
 				.name(Text.translatable("celestialwynn.mute_spells"))
 				.description(OptionDescription.of(Text.translatable("celestialwynn.mute_spells.description")))
-				.controller(TickBoxControllerBuilder::create)
-				.binding(Config::muteSpellCastDing.binding())
+				.controller {
+					FloatSliderControllerBuilder.create(it)
+						.range(0f, 1f)
+						.step(0.01f)
+						.formatValue { v -> Text.literal("${round(v * 100f).toInt()}%") }
+				}
+				.binding(Config::spellDingVolume.binding())
 				.build())
 			.option(Option.createBuilder<FOVScaling>()
 				.name(Text.translatable("celestialwynn.fov_scaling"))
 				.description(OptionDescription.of(Text.translatable("celestialwynn.fov_scaling.description.line1")
 					.append("\n\n")
 					.append(Text.translatable("celestialwynn.fov_scaling.description.line2"))))
-				.controller { option: Option<FOVScaling> ->
-					EnumControllerBuilder.create(option)
+				.controller {
+					EnumControllerBuilder.create(it)
 						.enumClass(FOVScaling::class.java)
 						.formatValue { Text.translatable("celestialwynn.scaling." + it.name.lowercase()) }
 				}
