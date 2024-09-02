@@ -43,12 +43,7 @@ dependencies {
 	include("me.celestialfault:celestial-config:${deps["celestialconfig"]}")
 
 	modImplementation("com.terraformersmc:modmenu:${deps["modmenu"]}")
-	// what the fuck
-	if(mcVersion == "1.20.2") {
-		modImplementation("dev.isxander.yacl:yet-another-config-lib-fabric:${deps["yacl"]}+${mcVersion}")
-	} else {
-		modImplementation("dev.isxander:yet-another-config-lib:${deps["yacl"]}+${mcVersion}-fabric")
-	}
+	modImplementation("dev.isxander:yet-another-config-lib:${deps["yacl"]}+${mcVersion}-fabric")
 
 	modRuntimeOnly("me.djtheredstoner:DevAuth-fabric:${deps["devauth"]}")
 }

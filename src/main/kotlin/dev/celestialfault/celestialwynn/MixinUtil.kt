@@ -10,10 +10,7 @@ import java.util.*
 import kotlin.jvm.optionals.getOrNull
 
 object MixinUtil {
-	/*? if >=1.21*/
 	private val DING = Identifier.ofVanilla("entity.arrow.hit_player")
-	/*? if <1.21*/
-	/*private val DING = Identifier("minecraft", "entity.arrow.hit_player")*/
 
 	private val territoryBossbarUuid: UUID = UUID.fromString("d1ff1f36-d7c5-380f-9fa9-cd829c91cafe")
 
