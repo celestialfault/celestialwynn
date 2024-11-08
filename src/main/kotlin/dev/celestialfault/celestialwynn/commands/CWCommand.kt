@@ -8,8 +8,9 @@ import com.mojang.brigadier.suggestion.SuggestionsBuilder
 import com.mojang.brigadier.tree.CommandNode
 import dev.celestialfault.celestialwynn.CelestialWynn
 import dev.celestialfault.celestialwynn.config.Config
-import dev.celestialfault.celestialwynn.config.ConfigGUI.getConfigScreen
+import dev.celestialfault.celestialwynn.config.ConfigGUI
 import dev.celestialfault.celestialwynn.enums.FOVScaling
+import dev.celestialfault.celestialwynn.util.Scheduler
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource
 import net.minecraft.client.MinecraftClient
@@ -42,7 +43,7 @@ object CWCommand {
 	}
 
 	private fun openConfig(ctx: CommandContext<FabricClientCommandSource>): Int {
-		MinecraftClient.getInstance().setScreen(getConfigScreen(null))
+		Scheduler.schedule(0) { MinecraftClient.getInstance().setScreen(ConfigGUI.getConfigScreen(null)) }
 		return 0
 	}
 

@@ -2,7 +2,6 @@ package dev.celestialfault.celestialwynn.config
 
 import com.google.gson.JsonPrimitive
 import dev.celestialfault.celestialwynn.enums.Channel
-import dev.celestialfault.celestialwynn.enums.ChannelMode
 import dev.celestialfault.celestialwynn.enums.FOVScaling
 import dev.isxander.yacl3.api.Binding
 import me.celestialfault.celestialconfig.AbstractConfig
@@ -26,8 +25,6 @@ object Config : AbstractConfig(FabricLoader.getInstance().configDir.resolve("cel
 	@get:JvmStatic
 	var fovScaling by Property.enum<FOVScaling>("fov_scaling", FOVScaling.VANILLA).notNullable()
 
-	@get:JvmStatic
-	var channelMode by Property.enum<ChannelMode>("chat_mode", ChannelMode.PREFILL).notNullable()
 	@get:JvmStatic
 	var channel by Property.enum<Channel>("channel", Channel.ALL).notNullable()
 

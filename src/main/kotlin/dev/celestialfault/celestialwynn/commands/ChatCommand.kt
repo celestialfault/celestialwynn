@@ -24,23 +24,10 @@ object ChatCommand {
 
 	@Suppress("UNUSED_PARAMETER")
 	fun register(dispatcher: CommandDispatcher<FabricClientCommandSource>, ignored: CommandRegistryAccess) {
-		dispatcher.register(ClientCommandManager.literal("a")
-			.then(ClientCommandManager.argument("message", StringArgumentType.greedyString())
-				.executes(this::allChat)))
-
 		dispatcher.register(ClientCommandManager.literal("chat")
 			.then(ClientCommandManager.argument("channel", StringArgumentType.string())
 				.suggests(CHANNEL_SUGGESTIONS)
 				.executes(this::chat)))
-	}
-
-	private fun allChat(ctx: CommandContext<FabricClientCommandSource>): Int {
-		var message = StringArgumentType.getString(ctx, "message")
-		if(message.startsWith('/')) {
-			message = ".$message"
-		}
-		MinecraftClient.getInstance().networkHandler!!.sendChatMessage(message)
-		return 0
 	}
 
 	@Suppress("SameReturnValue")

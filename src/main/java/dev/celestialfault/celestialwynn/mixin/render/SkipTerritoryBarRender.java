@@ -3,8 +3,8 @@ package dev.celestialfault.celestialwynn.mixin.render;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import dev.celestialfault.celestialwynn.CelestialWynn;
-import dev.celestialfault.celestialwynn.MixinUtil;
 import dev.celestialfault.celestialwynn.config.Config;
+import dev.celestialfault.celestialwynn.features.TerritoryBarHider;
 import net.minecraft.client.gui.hud.BossBarHud;
 import net.minecraft.client.gui.hud.ClientBossBar;
 import org.spongepowered.asm.mixin.Mixin;
@@ -22,6 +22,6 @@ abstract class SkipTerritoryBarRender {
 			return iterator;
 		}
 
-		return MixinUtil.filterBars(iterator);
+		return TerritoryBarHider.filterBars(iterator);
 	}
 }

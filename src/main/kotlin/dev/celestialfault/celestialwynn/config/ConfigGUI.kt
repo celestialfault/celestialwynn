@@ -2,7 +2,6 @@ package dev.celestialfault.celestialwynn.config
 
 import dev.celestialfault.celestialwynn.enums.FOVScaling
 import dev.celestialfault.celestialwynn.config.Config.binding
-import dev.celestialfault.celestialwynn.enums.ChannelMode
 import dev.isxander.yacl3.api.*
 import dev.isxander.yacl3.api.controller.EnumControllerBuilder
 import dev.isxander.yacl3.api.controller.FloatSliderControllerBuilder
@@ -64,16 +63,6 @@ object ConfigGUI {
 				.description(OptionDescription.of(Text.translatable("celestialwynn.hide_shouts.description")))
 				.controller(TickBoxControllerBuilder::create)
 				.binding(Config::hideShouts.binding())
-				.build())
-			.option(Option.createBuilder<ChannelMode>()
-				.name(Text.translatable("celestialwynn.channel_mode"))
-				.description(OptionDescription.of(Text.translatable("celestialwynn.channel_mode.description")))
-				.controller {
-					EnumControllerBuilder.create(it)
-						.enumClass(ChannelMode::class.java)
-						.formatValue { Text.translatable("celestialwynn.channel_mode." + it.name.lowercase()) }
-				}
-				.binding(Config::channelMode.binding())
 				.build())
 			.build()
 	}

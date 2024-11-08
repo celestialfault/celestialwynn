@@ -1,8 +1,8 @@
 package dev.celestialfault.celestialwynn.mixin.misc;
 
 import com.llamalad7.mixinextras.sugar.Local;
-import dev.celestialfault.celestialwynn.MixinUtil;
 import dev.celestialfault.celestialwynn.config.Config;
+import dev.celestialfault.celestialwynn.features.SpellDingVolume;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.network.packet.s2c.play.PlaySoundS2CPacket;
 import org.spongepowered.asm.mixin.Mixin;
@@ -17,7 +17,7 @@ abstract class MuteSpellCastDing {
 	public void celestialwynn$muteDing(PlaySoundS2CPacket packet, CallbackInfo ci) {
 		float volume = Config.getSpellDingVolume();
 		if(volume > 0f) return;
-		if(MixinUtil.isDing(packet)) {
+		if(SpellDingVolume.isDing(packet)) {
 			ci.cancel();
 		}
 	}
@@ -31,6 +31,6 @@ abstract class MuteSpellCastDing {
 		index = 6
 	)
 	public float celestialwynn$reduceDingVolume(float original, @Local(argsOnly = true) PlaySoundS2CPacket packet) {
-		return MixinUtil.isDing(packet) ? original * Config.getSpellDingVolume() : original;
+		return SpellDingVolume.isDing(packet) ? original * Config.getSpellDingVolume() : original;
 	}
 }
