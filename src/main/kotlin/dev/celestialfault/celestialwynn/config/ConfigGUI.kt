@@ -1,7 +1,6 @@
 package dev.celestialfault.celestialwynn.config
 
 import dev.celestialfault.celestialwynn.enums.FOVScaling
-import dev.celestialfault.celestialwynn.config.Config.binding
 import dev.isxander.yacl3.api.*
 import dev.isxander.yacl3.api.controller.EnumControllerBuilder
 import dev.isxander.yacl3.api.controller.FloatSliderControllerBuilder
@@ -12,7 +11,6 @@ import net.minecraft.client.gui.screen.Screen
 import net.minecraft.text.Text
 import net.minecraft.util.Formatting
 import kotlin.math.round
-import kotlin.reflect.KClass
 
 private val waveyCapesInstalled = FabricLoader.getInstance().isModLoaded("waveycapes")
 
@@ -49,7 +47,7 @@ object ConfigGUI {
 					}))
 				.controller(TickBoxControllerBuilder::create)
 				.available(!waveyCapesInstalled)
-				.binding(Config::fixSilverbullCapes.binding())
+				.binding(true, Config::fixSilverbullCapes) { Config.fixSilverbullCapes = it }
 				.build())
 			.build()
 	}
@@ -62,7 +60,7 @@ object ConfigGUI {
 				.name(Text.translatable("celestialwynn.hide_shouts"))
 				.description(OptionDescription.of(Text.translatable("celestialwynn.hide_shouts.description")))
 				.controller(TickBoxControllerBuilder::create)
-				.binding(Config::hideShouts.binding())
+				.binding(false, Config::hideShouts) { Config.hideShouts = it }
 				.build())
 			.build()
 	}
@@ -78,7 +76,7 @@ object ConfigGUI {
 					.append(Text.translatable("celestialwynn.hide_territory_bar.description.line2")
 						.formatted(Formatting.YELLOW))))
 				.controller(TickBoxControllerBuilder::create)
-				.binding(Config::hideTerritoryBar.binding())
+				.binding(false, Config::hideTerritoryBar) { Config.hideTerritoryBar = it }
 				.build())
 			.option(Option.createBuilder<Float>()
 				.name(Text.translatable("celestialwynn.mute_spells"))
@@ -89,7 +87,7 @@ object ConfigGUI {
 						.step(0.01f)
 						.formatValue { v -> Text.literal("${round(v * 100f).toInt()}%") }
 				}
-				.binding(Config::spellDingVolume.binding())
+				.binding(1f, Config::spellDingVolume) { Config.spellDingVolume = it }
 				.build())
 			.option(Option.createBuilder<FOVScaling>()
 				.name(Text.translatable("celestialwynn.fov_scaling"))
@@ -101,7 +99,7 @@ object ConfigGUI {
 						.enumClass(FOVScaling::class.java)
 						.formatValue { Text.translatable("celestialwynn.scaling." + it.name.lowercase()) }
 				}
-				.binding(Config::fovScaling.binding())
+				.binding(FOVScaling.VANILLA, Config::fovScaling) { Config.fovScaling = it }
 				.build())
 			.build()
 	}
@@ -114,25 +112,25 @@ object ConfigGUI {
 				.name(Text.translatable("celestialwynn.item.x"))
 				.description(OptionDescription.of(Text.translatable("celestialwynn.item.x.description")))
 				.controller { option: Option<Int> -> IntegerSliderControllerBuilder.create(option).range(-150, 150).step(1) }
-				.binding(Config.ItemScaling::x.binding())
+				.binding(0, Config.ItemScaling::x) { Config.ItemScaling.x = it }
 				.build())
 			.option(Option.createBuilder<Int>()
 				.name(Text.translatable("celestialwynn.item.y"))
 				.description(OptionDescription.of(Text.translatable("celestialwynn.item.y.description")))
 				.controller { option: Option<Int> -> IntegerSliderControllerBuilder.create(option).range(-150, 150).step(1) }
-				.binding(Config.ItemScaling::y.binding())
+				.binding(0, Config.ItemScaling::y) { Config.ItemScaling.y = it }
 				.build())
 			.option(Option.createBuilder<Int>()
 				.name(Text.translatable("celestialwynn.item.z"))
 				.description(OptionDescription.of(Text.translatable("celestialwynn.item.z.description")))
 				.controller { option: Option<Int> -> IntegerSliderControllerBuilder.create(option).range(-150, 50).step(1) }
-				.binding(Config.ItemScaling::z.binding())
+				.binding(0, Config.ItemScaling::z) { Config.ItemScaling.z = it }
 				.build())
 			.option(Option.createBuilder<Float>()
 				.name(Text.translatable("celestialwynn.item.scale"))
 				.description(OptionDescription.of(Text.translatable("celestialwynn.item.scale.description")))
 				.controller { option: Option<Float> -> FloatSliderControllerBuilder.create(option).range(0.1f, 2f).step(0.1f) }
-				.binding(Config.ItemScaling::scale.binding())
+				.binding(1f, Config.ItemScaling::scale) { Config.ItemScaling.scale = it }
 				.build())
 			.build()
 	}

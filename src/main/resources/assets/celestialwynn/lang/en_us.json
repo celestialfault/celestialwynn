@@ -14,7 +14,7 @@
 
   "celestialwynn.cape_fix": "Fix Silverbull Capes",
   "celestialwynn.cape_fix.description": "Fixes capes floating when players have their armor hidden with a Silverbull subscription",
-  "celestialwynn.cape_fix.wavey_capes_installed": "This setting is unavailable as you have Wavey Capes installed, which already fixes this issue.",
+  "celestialwynn.cape_fix.wavey_capes_installed": "This setting is unavailable as you have Wavey Capes installed, which doesn't suffer from this issue.",
   "celestialwynn.hide_territory_bar": "Hide Territory Bar",
   "celestialwynn.hide_territory_bar.description.line1": "Hides the persistent territory/guild bar at the top of the screen when enabled",
   "celestialwynn.hide_territory_bar.description.line2": "Note that this will also hide the bomb timer if you aren't using the bomb timer overlay from Wynntils or fuy.gg!",

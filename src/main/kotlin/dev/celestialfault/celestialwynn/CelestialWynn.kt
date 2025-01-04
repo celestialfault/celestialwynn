@@ -6,10 +6,7 @@ import dev.celestialfault.celestialwynn.commands.ChatCommand
 import dev.celestialfault.celestialwynn.config.Config
 import net.fabricmc.api.ClientModInitializer
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents
-import net.fabricmc.fabric.api.networking.v1.PacketSender
 import net.minecraft.client.MinecraftClient
-import net.minecraft.client.network.ClientPlayNetworkHandler
 import net.minecraft.text.MutableText
 import net.minecraft.text.Style
 import net.minecraft.text.Text
@@ -18,15 +15,14 @@ import org.slf4j.Logger
 import java.io.IOException
 
 object CelestialWynn : ClientModInitializer {
-	@JvmField val LOGGER: Logger = LogUtils.getLogger()
-	@JvmStatic var isOnWynn: Boolean = false
-		private set
+	val LOGGER: Logger = LogUtils.getLogger()
+	@JvmStatic val isOnWynn: Boolean
+		get() = MinecraftClient.getInstance().networkHandler?.brand == "Wynn"
 
-	fun prefix(): MutableText {
-		return Text.empty()
+	fun prefix(): MutableText =
+		Text.empty()
 			.append(Text.translatable("celestialwynn.prefix").setStyle(Style.EMPTY.withColor(0xAE3EC8).withBold(true)))
-			.append(Text.literal(" > ").formatted(Formatting.DARK_GRAY))
-	}
+			.append(Text.literal(" ⟫ ").formatted(Formatting.DARK_GRAY))
 
 	override fun onInitializeClient() {
 		try {
@@ -34,22 +30,10 @@ object CelestialWynn : ClientModInitializer {
 		} catch(e: IOException) {
 			LOGGER.warn("Failed to load config file", e)
 		}
-		ClientPlayConnectionEvents.JOIN.register(this::onJoin)
-		ClientPlayConnectionEvents.DISCONNECT.register(this::onDisconnect)
-		ClientCommandRegistrationCallback.EVENT.register(CWCommand::register)
-		ClientCommandRegistrationCallback.EVENT.register(ChatCommand::register)
-	}
 
-	@Suppress("UNUSED_PARAMETER")
-	private fun onJoin(handler: ClientPlayNetworkHandler, ignored: PacketSender, client: MinecraftClient) {
-		if(client.networkHandler?.brand == "Wynn") {
-			LOGGER.info("Detected joining Wynncraft")
-			isOnWynn = true
+		ClientCommandRegistrationCallback.EVENT.register { dispatcher, _ ->
+			CWCommand.register(dispatcher)
+			ChatCommand.register(dispatcher)
 		}
-	}
-
-	@Suppress("UNUSED_PARAMETER")
-	private fun onDisconnect(handler: ClientPlayNetworkHandler, client: MinecraftClient) {
-		isOnWynn = false
 	}
 }

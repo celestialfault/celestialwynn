@@ -8,11 +8,9 @@ enum class FOVScaling {
 	ARCTANGENT,
 	SPRINT_ONLY;
 
-	fun calculate(fovMultiplier: Float, player: AbstractClientPlayerEntity): Float {
-		return when(this) {
-			ARCTANGENT -> 1f + (atan(2.0 * Math.PI * (fovMultiplier - 1.0)) / (2.0 * Math.PI)).toFloat()
-			SPRINT_ONLY -> 1f + (if(player.isSprinting) 0.15f else 0f)
-			VANILLA -> fovMultiplier
-		}
+	fun calculate(fovMultiplier: Float, player: AbstractClientPlayerEntity): Float = when(this) {
+		ARCTANGENT -> 1f + (atan(2.0 * Math.PI * (fovMultiplier - 1.0)) / (2.0 * Math.PI)).toFloat()
+		SPRINT_ONLY -> 1f + (if(player.isSprinting) 0.15f else 0f)
+		VANILLA -> fovMultiplier
 	}
 }

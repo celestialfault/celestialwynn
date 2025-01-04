@@ -1,62 +1,37 @@
 package dev.celestialfault.celestialwynn.config
 
-import com.google.gson.JsonPrimitive
+import dev.celestialfault.celestialconfig.AbstractConfig
+import dev.celestialfault.celestialconfig.ObjectProperty
+import dev.celestialfault.celestialconfig.Property
+import dev.celestialfault.celestialconfig.Serializer
 import dev.celestialfault.celestialwynn.enums.Channel
 import dev.celestialfault.celestialwynn.enums.FOVScaling
-import dev.isxander.yacl3.api.Binding
-import me.celestialfault.celestialconfig.AbstractConfig
-import me.celestialfault.celestialconfig.PrimitiveProperty
-import me.celestialfault.celestialconfig.Property
-import me.celestialfault.celestialconfig.properties.*
 import net.fabricmc.loader.api.FabricLoader
-import java.util.function.Consumer
-import kotlin.reflect.KMutableProperty0
-import kotlin.reflect.jvm.isAccessible
 
 object Config : AbstractConfig(FabricLoader.getInstance().configDir.resolve("celestial-wynn.json")) {
 	@get:JvmStatic
-	var fixSilverbullCapes by Property.boolean("fix_silverbull_capes", true).notNullable()
+	var fixSilverbullCapes by Property.of("fix_silverbull_capes", true)
 	@get:JvmStatic
-	var hideTerritoryBar by Property.boolean("hide_territory_bar", false).notNullable()
+	var hideTerritoryBar by Property.of("hide_territory_bar", false)
 	@get:JvmStatic
-	var hideShouts by Property.boolean("hide_shouts", false).notNullable()
+	var hideShouts by Property.of("hide_shouts", false)
 	@get:JvmStatic
-	var spellDingVolume by Property.float("spell_volume", default = 1f, min = 0f, max = 1f).notNullable()
+	var spellDingVolume by Property.of("spell_volume", Serializer.number(0f, 1f), 1f)
 	@get:JvmStatic
-	var fovScaling by Property.enum<FOVScaling>("fov_scaling", FOVScaling.VANILLA).notNullable()
+	var fovScaling by Property.of("fov_scaling", Serializer.enum(), FOVScaling.VANILLA)
 
 	@get:JvmStatic
-	var channel by Property.enum<Channel>("channel", Channel.ALL).notNullable()
+	var channel by Property.of("channel", Serializer.enum(), Channel.ALL)
 
 	object ItemScaling : ObjectProperty<ItemScaling>("item_scaling") {
 		@get:JvmStatic
-		var scale by Property.float("scale", 1f, 0.1f, 2f).notNullable()
+		var scale by Property.of("scale", Serializer.number(0.1f, 2f), 1f)
 
 		@get:JvmStatic
-		var x by Property.int("x", 0, -150, 150).notNullable()
+		var x by Property.of("x", Serializer.number(-150, 150), 0)
 		@get:JvmStatic
-		var y by Property.int("y", 0, -150, 150).notNullable()
+		var y by Property.of("y", Serializer.number(-150, 150), 0)
 		@get:JvmStatic
-		var z by Property.int("z", 0, -150, 50).notNullable()
-	}
-
-	@Suppress("unused")
-	private val muteSpellMigration by MigrateProperty("mute_spells") {
-		if(spellDingVolume != 1f) return@MigrateProperty
-		if(it is JsonPrimitive && it.isBoolean) {
-			spellDingVolume = if(it.asBoolean) 0f else 1f
-		}
-	}
-
-	@Suppress("UNCHECKED_CAST")
-	internal fun <T> KMutableProperty0<T>.binding(): Binding<T> {
-		this.isAccessible = true
-		return when(val delegate: Property<T> = this.getDelegate() as Property<T>) {
-			is NoNullProperty<T> -> Binding.generic(delegate.wrapped.default, delegate::get, delegate::set)
-			is PrimitiveProperty<T> -> Binding.generic(delegate.default, delegate::get, delegate::set as Consumer<T>)
-			else -> {
-				throw UnsupportedOperationException("property must be NoNull or Primitive")
-			}
-		}
+		var z by Property.of("z", Serializer.number(-150, 50), 0)
 	}
 }

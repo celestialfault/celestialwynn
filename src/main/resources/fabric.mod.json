@@ -3,7 +3,7 @@
   "id": "celestialwynn",
   "version": "${version}",
   "name": "Celestial Wynn",
-  "description": "A collection of small patches for Wynncraft, aiming at improving the gameplay with minor bug fixes and changes that don't drastically change the look and feel of the game.",
+  "description": "Small patches for Wynncraft, keeping the vanilla no-mods feeling while fixing some minor pain points.",
   "authors": ["celeste"],
   "license": "zlib",
   "environment": "client",

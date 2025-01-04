@@ -6,8 +6,7 @@ import net.minecraft.client.network.AbstractClientPlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-// apply before most other mixins to avoid potentially breaking any zoom mods that might
-// modify this for whatever reason
+// apply before most other mixins to avoid other mods that modify the player's fov interfering
 @Mixin(value = AbstractClientPlayerEntity.class, priority = 900)
 abstract class ModifyFovMultiplier {
 	// the ordinal ensures that we don't modify the spyglass FOV multiplier (which always returns a hardcoded 0.1f),
