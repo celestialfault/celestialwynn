@@ -2,6 +2,11 @@
   "celestialwynn.name": "Celestial Wynn",
   "celestialwynn.prefix": "Celestial",
 
+  "key.celestialwynn.lantern": "Equip Lantern in Offhand",
+  "key.celestialwynn.torch": "Equip Torch in Offhand",
+  "key.celestialwynn.compass": "Equip Compass in Offhand",
+  "celestialwynn.equippedOffhand": "Offhand item added by %s",
+
   "celestialwynn.config.main": "Celestial Wynn",
   "celestialwynn.config.bug_fixes": "Bug Fixes",
   "celestialwynn.config.bug_fixes.description": "Fixes for minor client-sided issues",

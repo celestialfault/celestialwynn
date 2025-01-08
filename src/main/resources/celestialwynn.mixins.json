@@ -8,6 +8,7 @@
     "misc.FixFloatingSilverbullCapes",
     "misc.HideShouts",
     "misc.MuteSpellCastDing",
+    "render.FixCharacterSelectionMainHand",
     "render.HeldItemScale",
     "render.ModifyFovMultiplier",
     "render.SkipTerritoryBarRender"

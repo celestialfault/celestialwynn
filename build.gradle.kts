@@ -41,7 +41,7 @@ dependencies {
 	implementation("dev.celestialfault:celestial-config:${deps["celestialconfig"]}")
 	include("dev.celestialfault:celestial-config:${deps["celestialconfig"]}")
 
-	modImplementation("dev.celestialfault:commander:${deps["commander"]}")
+	modImplementation("dev.celestialfault:commander:${deps["commander"]}") { isTransitive = false }
 	include("dev.celestialfault:commander:${deps["commander"]}")
 
 	modImplementation("com.terraformersmc:modmenu:${deps["modmenu"]}")

@@ -26,7 +26,6 @@ object ChatCommand {
 			CommandSource.suggestMatching(CHANNELS.keys, builder)
 	}
 
-	@Suppress("UNUSED_PARAMETER")
 	fun register(dispatcher: CommandDispatcher<FabricClientCommandSource>) {
 		Commander.register(ClientCommand(this::chat, this), dispatcher)
 	}
