@@ -39,7 +39,7 @@
   "celestialwynn.scaling.sprint_only": "Sprinting only",
 
   "celestialwynn.item.x": "X",
-  "celestialwynn.item.x.description": "Moves the held item left or right across the screen",
+  "celestialwynn.item.x.description": "Moves the held item left or right across the screen; note that this slider is inverted if your main hand is set to left handed",
   "celestialwynn.item.y": "Y",
   "celestialwynn.item.y.description": "Moves the held item up or down across the screen",
   "celestialwynn.item.z": "Z",

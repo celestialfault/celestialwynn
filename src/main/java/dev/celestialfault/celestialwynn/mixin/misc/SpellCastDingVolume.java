@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ClientPlayNetworkHandler.class)
-abstract class MuteSpellCastDing {
+abstract class SpellCastDingVolume {
 	@Inject(method = "onPlaySound", at = @At("HEAD"), cancellable = true)
 	public void celestialwynn$muteDing(PlaySoundS2CPacket packet, CallbackInfo ci) {
 		float volume = Config.getSpellDingVolume();

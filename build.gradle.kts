@@ -68,7 +68,7 @@ loom {
 	}
 }
 
-val javaVersion = if(stonecutter.compare(mcVersion, "1.20.6") >= 0) 21 else 17
+val javaVersion = 21
 
 java {
 	targetCompatibility = JavaVersion.toVersion(javaVersion)

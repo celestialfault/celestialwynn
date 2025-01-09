@@ -24,14 +24,10 @@ object Config : AbstractConfig(FabricLoader.getInstance().configDir.resolve("cel
 	var channel by Property.of("channel", Serializer.enum(), Channel.ALL)
 
 	object ItemScaling : ObjectProperty<ItemScaling>("item_scaling") {
-		@get:JvmStatic
 		var scale by Property.of("scale", Serializer.number(0.1f, 2f), 1f)
 
-		@get:JvmStatic
 		var x by Property.of("x", Serializer.number(-150, 150), 0)
-		@get:JvmStatic
 		var y by Property.of("y", Serializer.number(-150, 150), 0)
-		@get:JvmStatic
 		var z by Property.of("z", Serializer.number(-150, 50), 0)
 	}
 }

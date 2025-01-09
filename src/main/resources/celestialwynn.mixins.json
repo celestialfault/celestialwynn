@@ -7,7 +7,7 @@
     "misc.ChatChannelMixin",
     "misc.FixFloatingSilverbullCapes",
     "misc.HideShouts",
-    "misc.MuteSpellCastDing",
+    "misc.SpellCastDingVolume",
     "render.FixCharacterSelectionMainHand",
     "render.HeldItemScale",
     "render.ModifyFovMultiplier",

@@ -6,6 +6,7 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.item.HeldItemRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Arm;
 import net.minecraft.util.Hand;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -20,19 +21,28 @@ abstract class HeldItemScale {
 		method = "renderFirstPersonItem",
 		at = @At(
 			value = "INVOKE",
-			target = "Lnet/minecraft/client/render/item/HeldItemRenderer;renderItem(Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/render/model/json/ModelTransformationMode;ZLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V"
+			//? if >=1.21.2 {
+			target = "Lnet/minecraft/client/render/item/HeldItemRenderer;renderItem(Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/item/ItemStack;Lnet/minecraft/item/ModelTransformationMode;ZLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V"
+			//?} else {
+			/*target = "Lnet/minecraft/client/render/item/HeldItemRenderer;renderItem(Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/render/model/json/ModelTransformationMode;ZLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V"
+			*///?}
 		)
 	)
 	public void celestialwynn$modifyHeldItemScale(AbstractClientPlayerEntity player, float tickDelta, float pitch,
 	                                              Hand hand, float swingProgress, ItemStack item, float equipProgress,
 	                                              MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light,
 	                                              CallbackInfo ci) {
-		float x = Config.ItemScaling.getX() / 100f;
-		float y = Config.ItemScaling.getY() / 100f;
-		float z = Config.ItemScaling.getZ() / 100f;
-		float scale = Config.ItemScaling.getScale();
+		var arm = hand == Hand.MAIN_HAND ? player.getMainArm() : player.getMainArm().getOpposite();
+		var config = Config.ItemScaling.INSTANCE;
+		float x = config.getX() / 100f;
+		float y = config.getY() / 100f;
+		float z = config.getZ() / 100f;
+		float scale = config.getScale();
 
-		if(hand == Hand.OFF_HAND) {
+		// note that this means the X offset slider is technically inverted with a left hand main hand, but this
+		// also ensures that the value remains consistent between the two options, which in my opinion is
+		// slightly more preferable than having a fully consistent slider.
+		if(arm == Arm.LEFT) {
 			x = x > 0 ? -x : Math.abs(x);
 		}
 
