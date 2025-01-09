@@ -1,8 +1,7 @@
 package dev.celestialfault.celestialwynn
 
 import com.mojang.logging.LogUtils
-import dev.celestialfault.celestialwynn.commands.CWCommand
-import dev.celestialfault.celestialwynn.commands.ChatCommand
+import dev.celestialfault.celestialwynn.commands.CelestialWynnCommands
 import dev.celestialfault.celestialwynn.config.Config
 import dev.celestialfault.celestialwynn.features.OffHandItems
 import net.fabricmc.api.ClientModInitializer
@@ -39,10 +38,7 @@ object CelestialWynn : ClientModInitializer {
 			LOGGER.warn("Failed to load config file", e)
 		}
 
-		ClientCommandRegistrationCallback.EVENT.register { dispatcher, _ ->
-			CWCommand.register(dispatcher)
-			ChatCommand.register(dispatcher)
-		}
+		ClientCommandRegistrationCallback.EVENT.register { dispatcher, _ -> CelestialWynnCommands.register(dispatcher) }
 		ClientReceiveMessageEvents.GAME.register { message, overlay -> if(overlay) onActionBar(message) }
 		OffHandItems.init()
 	}
