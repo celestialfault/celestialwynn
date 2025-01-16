@@ -19,6 +19,8 @@ object Config : AbstractConfig(FabricLoader.getInstance().configDir.resolve("cel
 	var spellDingVolume by Property.of("spell_volume", Serializer.number(0f, 1f), 1f)
 	@get:JvmStatic
 	var fovScaling by Property.of("fov_scaling", Serializer.enum(), FOVScaling.VANILLA)
+	@get:JvmStatic
+	var removeFlyingFovModifier by Property.of("remove_flight_fov", false)
 
 	@get:JvmStatic
 	var channel by Property.of("channel", Serializer.enum(), Channel.ALL)

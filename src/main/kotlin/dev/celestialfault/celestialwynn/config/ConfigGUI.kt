@@ -101,6 +101,11 @@ object ConfigGUI {
 				}
 				.binding(FOVScaling.VANILLA, Config::fovScaling) { Config.fovScaling = it }
 				.build())
+			.option(Option.createBuilder<Boolean>()
+				.name(Text.translatable("celestialwynn.remove_flight_fov"))
+				.controller(TickBoxControllerBuilder::create)
+				.binding(false, Config::removeFlyingFovModifier) { Config.removeFlyingFovModifier = it }
+				.build())
 			.build()
 	}
 

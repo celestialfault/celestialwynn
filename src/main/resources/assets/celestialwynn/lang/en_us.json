@@ -34,6 +34,7 @@
   "celestialwynn.fov_scaling": "FOV Scaling Function",
   "celestialwynn.fov_scaling.description.line1": "Alternative FOV scaling functions which reduce how much your FOV is modified by effects such as Speed and sprinting.",
   "celestialwynn.fov_scaling.description.line2": "Note that this feature does not fully remove FOV scaling; if you wish to remove it entirely, turn off FOV Effects in Minecraft's Accessibility Settings instead.",
+  "celestialwynn.remove_flight_fov": "Remove Flight FOV Modifier",
   "celestialwynn.scaling.vanilla": "Vanilla",
   "celestialwynn.scaling.arctangent": "Arctangent",
   "celestialwynn.scaling.sprint_only": "Sprinting only",
