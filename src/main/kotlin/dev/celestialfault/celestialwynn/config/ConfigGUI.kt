@@ -22,7 +22,9 @@ object ConfigGUI {
 			.category(
 				ConfigCategory.createBuilder()
 					.name(Text.translatable("celestialwynn.config.main"))
-					.group(bugFixes())
+					//? if <=1.21.1 {
+					/*.group(bugFixes())
+					*///?}
 					.group(chat())
 					.group(itemScaling())
 					.group(misc())
