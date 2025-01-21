@@ -1,5 +1,9 @@
 # Celestial Wynn
 
+**This project now lives on [Codeberg](https://codeberg.org/celestialfault/celestialwynn)**
+
+-----
+
 A mod containing a collection of small patches for [Wynncraft], primarily aimed at fixing minor client-sided
 bugs or improving the game experience in minor ways, while keeping the experience largely the same as if playing
 without any mods.
